@@ -12,23 +12,33 @@ def get_csv(fname):
 
 
 rev = get_csv('../ChallengeInputs/Revenue.csv')
-#print(rev)
 
 
 exp = get_csv('../ChallengeInputs/Expense.csv')
-#print(exp)
+
+
+final = [[] for _ in range(2)]
+
 
 row_num = 0
 for row in rev:
     col_num = 0
-    if row_num == 0:
-        row_num += 1
-    else:
-        for col in row:
-            if col_num == 0:
-                col_num += 1
+    for col in row:
+        if col_num == 0:
+            col_num += 1
+        else:
+            if row_num == 0:
+                final[0].append(col)
+                final[1].append(0)
             else:
-                print(int(col) - int(exp[row_num][col_num]))
+                num = int(col) - int(exp[row_num][col_num])
+                if num > 0:
+                    final[1][col_num - 1] += num
                 col_num += 1
-        row_num += 1
+    row_num += 1
         # print(col)
+
+for i in range(len(final[1])):
+    final[1][i] = final[1][i] * .062
+
+print(final)
