@@ -41,4 +41,6 @@ for row in rev:
 for i in range(len(final[1])):
     final[1][i] = final[1][i] * .062
 
-print(final)
+
+for i in range(len(final[0])):
+    print(final[0][i], final[1][i])
